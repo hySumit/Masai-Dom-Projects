@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header > h1{
+            text-align: center;
+            font-size: 39px;
+            color: #00807F;
+            margin-bottom: 4%;
+            margin-top: 2%;
+        }
+        #main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #calculator{
+            height: 450px;
+            width: 350px;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        #calculator > .screen{
+            height: 60px;
+            width: 80%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin-top: 12%;
+            margin-left: 10%;
+            margin-right: 10%;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #btn{
+            width: 80%;
+            margin-top: 5%;
+            margin-left: 10%;
+            margin-right: 10%;
+            display: grid;
+            grid-template-rows: repeat(4,1fr);
+            grid-template-columns: repeat(4,1fr);
+            gap: 10px;
+        }
+        .shell{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 7px;
+            height: 10vh;
+            width: 9.6vh;
+        }
+        .shell:hover{
+            background-color: #00807F;
+        }
+        .shell{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease 0s;
+        }
+        .shell > p{
+            font-size: 20px;
+            font-weight: 900;
+        }
+        .black{
+            background-color: black;
+            color: white;
+        }
+        .red{
+            background-color: #FF0000;
+            color: white;
+        }
+        button{
+            cursor: pointer;
+            background: none;
+            border: none;
+            height: 100%;
+            width: 100%;
+            font-size: 23px;
+        }
+        .operator{
+            color: white;
+        }
+        #equalTo{
+            color: white;
+        }
+        #clear{
+            color: white;
+        }
+        #head{
+            font-family: 'poppins',sans-serif;
+            font-size: 20px;
+            width: 90%;
+            overflow: scroll;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+
+            /* used it to hide the scroll bar effect */
+        }
+        
+    </style>
+    <title>Masai Calculator</title>
+</head>
+<body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <div id="main">
+        <div id="calculator">
+            <div class="screen"><h1 id="head" ></h1></div>
+            <div id="btn">
+                <div class="shell keypad"><button>1</button></div>
+                <div class="shell keypad"><button>2</button></div>
+                <div class="shell keypad"><button>3</button></div>
+                <div class="shell black keypad"><button class="operator">+</button></div>
+                <div class="shell keypad"><button>4</button></div>
+                <div class="shell keypad"><button>5</button></div>
+                <div class="shell keypad"><button>6</button></div>
+                <div class="shell black keypad"><button class="operator">-</button></div>
+                <div class="shell keypad"><button>7</button></div>
+                <div class="shell keypad"><button>8</button></div>
+                <div class="shell keypad"><button>9</button></div>
+                <div class="shell black keypad"><button class="operator">*</button></div>
+                <div class="shell red"><button id="clear">C</button></div>
+                <div class="shell keypad"><button>0</button></div>
+                <div class="shell black"><button id="equalTo">=</button></div>
+                <div class="shell black keypad "><button class="operator">/</button></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let display = document.getElementById("head")
+    let keypad = document.querySelectorAll(".keypad>button")
+    let operator = document.querySelectorAll(".operator>button")
+    let equalsTO = document.getElementById("equalTo")
+    let isdis = true
+    let dis1 = ""
+
+    equalsTO.addEventListener('click',function(){
+        display.innerText = eval(dis1)
+    })
+    
+    // clear >>>>>>>
+    let clear = document.getElementById("clear")
+    clear.addEventListener('click',function(){
+
+        isdis = true
+        display.innerText = ""
+        dis1 = ""
+    })
+
+    for (let i = 0 ; i<keypad.length; i++){
+        keypad[i].addEventListener('click',function(){
+            // console.log(keypad[i].innerText)
+            if(isdis){
+                dis1 += keypad[i].innerText 
+                display.innerText = dis1 
+            }
+            else{
+                dis1 += "" 
+                display.innerText = dis1 
+            }
+            
+        })
+    }
+
+
+</script>
+</html>
